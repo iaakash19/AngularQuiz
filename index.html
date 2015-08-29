@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html ng-app="quizApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Angular Quizapp</title>
+		<link rel="stylesheet" type="text/css" href="css/quiz.css">
+	</head>
+	<body>
+		
+<div id="myQuiz" ng-controller="MainController as vm">
+
+		<h1>Test Your Knowledge: <span>Saturn</span></h1>
+
+		<div class="progress">
+			<div ng-repeat="quiz in vm.quizBlock"
+			ng-class="$index === vm.activeQuizCount ? 'on' : 'off' "
+			>
+				
+			</div>
+			
+		</div>
+
+		<div id="introBlock" class="intro">
+			<h2>Welcome</h2>
+			<p>click begin to test your knowledge of Saturn</p>
+			<button class="begin" ng-click="vm.begin()">Begin</button>
+		</div>
+
+		<div class="question" 
+			ng-repeat="quiz in vm.quizBlock"
+			ng-class="$index === vm.activeQuizCount ? 'active' : 'inactive'">
+
+			<p class="text" ng-bind="quiz.question"></p>
+			<p class="ans" 
+				ng-repeat="answer in vm.quizBlock[$index].answers" 
+				ng-click="vm.checkAnswer($parent.$index, $index, $event)"
+				ng-class="$index === vm.correctAnswer ? 'correct' : '' ">
+				{{answer.text}}
+			</p>
+
+			<div class="feedback">
+				<p ng-show="vm.selectionCorrect">You are <strong>Correct</strong></p>
+				<p ng-hide="vm.selectionCorrect">OOPS That is not Correct</p>
+				<p ng-show="quiz.feedback && vm.correctAnswer!==null">Additional Feedback
+					<span ng-bind="quiz.feedback"></span>
+				</p>
+				<button class="continue_button" ng-click="vm.nextQuiz()">Continue</button>
+			</div>
+
+		</div>
+
+		
+
+		<!-- <div class="results">
+			
+			<h3>Results</h3>
+			<p>You scored x% by correctly answering X of the total X questions.</p>
+			<p>Use the links below to challenge your friends</p>
+			<div class="share">
+				<a href="" class="btn">Email</a>
+				<a href="" class="btn">Tweet</a>
+			</div>
+		</div> -->
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/quiz.js"></script>
+
+
+	</body>
+</html>
