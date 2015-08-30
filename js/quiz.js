@@ -4,7 +4,7 @@
 
 	app.controller('MainController', MainController);
 
-	function MainController($http) {
+	function MainController($http, $scope) {
 
 		var vm = this;
 		vm.quizBlock = [];
