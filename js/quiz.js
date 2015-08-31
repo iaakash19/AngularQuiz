@@ -10,7 +10,7 @@
 		vm.quizBlock = [];
 		vm.activeQuizCount = -1;
 
-		//vm.correctAnswer = 0;
+		vm.correctAnswer = 0;
 
 		vm.begin = begin;
 		vm.checkAnswer = checkAnswer;
